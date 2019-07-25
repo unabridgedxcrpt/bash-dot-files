@@ -1,0 +1,6 @@
+#This is my .inputrc file for bash (so far only used on MacOS X systems).
+set completion-ignore-case On
+set expand-tilde on
+set show-all-if-ambiguous on
+set visible-stats on
+set bell-style visible
