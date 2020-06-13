@@ -29,6 +29,8 @@
 #   ------------------------------------------------------------
     export PATH="$PATH:/usr/local/bin"
     export PATH="/usr/local/git/bin:/sw/bin:/usr/local/bin:/usr/local:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+
 
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
@@ -84,7 +86,8 @@ mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and ju
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
-alias youtube-dl='youtube-dl --write-thumbnail --embed-thumbnail'  # Preferred 'youtube-dl' implementation
+#alias youtube-dl='youtube-dl --write-thumbnail'  # Preferred 'youtube-dl' implementation
+alias audiotube='youtube-dl -x --embed-thumbnail --audio-format mp3 --audio-quality 0'	# Preferred 'youtube-dl' implementation to download audio/music
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
@@ -451,8 +454,8 @@ capitalize_remove_punctuation()
 alias xkcd2='xkcdpass --count=5 --acrostic="entropy" --delimiter="-" --min=3 --max=5 --case capitalize'
 
 xkcd() {
-#str=`gshuf /usr/share/dict/words  | grep "^[^']\{4,8\}$" | head -n6`
-str=`gshuf ~/bin/xkcd-words.txt | head -n6`
+str=`gshuf /usr/share/dict/words  | grep "^[^']\{4,8\}$" | head -n6`
+#str=`gshuf ~/bin/xkcd-words.txt | head -n6`
 
 res=""
 split=`echo $str | sed -e 's/\s\+/\n/g'` # Split with space as delimiter (any whitespace)
@@ -552,7 +555,7 @@ img64() {
 	echo '<img src="data:image/png;base64,'$(cat $1 | base64)'">'
   fi
 	input="";
- }
+}
 
 #Bash function that saves bash functions to file from shell session  
 #https://www.commandlinefu.com/commands/view/24621/bash-function-that-saves-bash-functions-to-file-from-shell-session
@@ -570,4 +573,3 @@ save_function ()
 list_functions () {
 	declare -F | cut -d ' ' -f 3
 	}
-
