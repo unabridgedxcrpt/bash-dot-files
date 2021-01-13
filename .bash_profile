@@ -12,7 +12,8 @@
 #  7.   System Operations & Information
 #  8.   Web Development
 #  9.   Reminders & Notes
-#  10.  Utility Functions
+#  10.  Shortcuts and aliases
+#  11.  Utility Functions
 #
 #  ---------------------------------------------------------------------------
 
@@ -59,6 +60,7 @@
 #   -----------------------------
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
+cpb() { cp "$1"{,.$(date -r "$1" "+%Y%m%d")}; }
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
@@ -75,6 +77,7 @@ alias .5='cd ../../../../../'               # Go back 5 directory levels
 alias .6='cd ../../../../../../'            # Go back 6 directory levels
 alias edit='bbedit'                         # edit:         Opens any file in bbedit editor
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias o.='open .'							# Opens current directory in the MacOS Finder.
 alias ~="cd ~"                              # ~:            Go Home
 alias c='clear'                             # c:            Clear terminal display
 alias which='type -all'                     # which:        Find executables
@@ -88,6 +91,8 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in Ma
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 #alias youtube-dl='youtube-dl --write-thumbnail'  # Preferred 'youtube-dl' implementation
 alias audiotube='youtube-dl -x --embed-thumbnail --audio-format mp3 --audio-quality 0'	# Preferred 'youtube-dl' implementation to download audio/music
+alias t='todo.sh -d /Users/jbird03/.todo.cfg'			# Todo CLI from todotxt.org
+alias python='python3.8'					# I rarely run the older python2.7 and mapping to the Brew controlled VERSION
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
@@ -285,7 +290,7 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 #   -------------------------------------------------------------------
     httpDebug () { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
-
+####################
 #   ---------------------------------------
 #   9.  REMINDERS & NOTES
 #   ---------------------------------------
@@ -319,7 +324,16 @@ httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grab
 
 ####################
 #   ---------------------------------------
-#  10.  Utility Functions
+#   10.  Shortcuts and aliases
+#   ---------------------------------------
+
+#   Sounds
+alias waves='play -n synth brownnoise synth pinknoise mix synth 0 0 0 10 10 40 trapezium amod 0.1 30'	# soothing background "white"-wave noise
+alias wn='play -n synth 00:00:05 whitenoise'
+
+####################
+#   ---------------------------------------
+#  11.  Utility Functions
 #   ---------------------------------------
 
 h() {
@@ -557,6 +571,13 @@ img64() {
 	input="";
 }
 
+static() {
+	while true; do 
+		printf "$(awk -v c="$(tput cols)" -v s="$RANDOM" 'BEGIN{srand(s);
+		while(--c>=0){printf("\xe2\x96\\%s",sprintf("%o",150+int(10*rand())));}}')";
+	done
+}
+
 #Bash function that saves bash functions to file from shell session  
 #https://www.commandlinefu.com/commands/view/24621/bash-function-that-saves-bash-functions-to-file-from-shell-session
 save_function ()
@@ -573,3 +594,18 @@ save_function ()
 list_functions () {
 	declare -F | cut -d ' ' -f 3
 	}
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/Users/jbird03/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/Users/jbird03/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/Users/jbird03/opt/anaconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/Users/jbird03/opt/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
