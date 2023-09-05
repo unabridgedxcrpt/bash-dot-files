@@ -97,7 +97,7 @@ mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and ju
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
-alias t='todo.sh -d /Users/jbird03/.todo.cfg'			# Todo CLI from todotxt.org
+alias t='todo.sh -d /Users/<username>/.todo.cfg'			# Todo CLI from todotxt.org
 # alias python='python3.9'					# I rarely run the older python2.7 and mapping to the Brew controlled VERSION
 catf () { declare -f "$@"; }
 alias rsync-copy='rsync -avzAX --progress -h'
@@ -112,7 +112,7 @@ alias df='df -h'
 alias top='htop'
 alias python='python3'
 # hg () { history | grep "$@"; }
-alias workgit='cd /Users/jbird03/OneDrive\ \-\ The\ University\ Of\ British\ Columbia/Documents/GitHub'
+alias workgit='cd /Users/<username>/OneDrive\ \-\ The\ University\ Of\ British\ Columbia/Documents/GitHub'
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
